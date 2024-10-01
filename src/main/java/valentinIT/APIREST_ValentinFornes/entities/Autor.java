@@ -1,10 +1,10 @@
 package valentinIT.APIREST_ValentinFornes.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.envers.Audited;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "Persona")
@@ -18,11 +18,9 @@ public class Autor extends EntidadBase {
 
     @Column
     private String nombre;
-
     @Column
     private String apellido;
-
-    @Column (name = "biografia", length = 1500)
+    @Column(name = "biografia", length = 1500)
     private String bio;
 
 }

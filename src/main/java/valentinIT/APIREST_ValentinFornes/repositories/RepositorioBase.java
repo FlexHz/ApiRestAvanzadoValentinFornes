@@ -7,6 +7,6 @@ import valentinIT.APIREST_ValentinFornes.entities.EntidadBase;
 import java.io.Serializable;
 
 @NoRepositoryBean
-public interface RepositorioBase <E extends EntidadBase, ID extends Serializable> extends JpaRepository <E, ID> {
+public interface RepositorioBase<E extends EntidadBase, ID extends Serializable> extends JpaRepository<E, ID> {
 
 }

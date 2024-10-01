@@ -1,10 +1,10 @@
 package valentinIT.APIREST_ValentinFornes.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.envers.Audited;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "Localidad")
@@ -16,6 +16,6 @@ import java.io.Serializable;
 @Audited
 public class Localidad extends EntidadBase {
 
-    @Column (name = "denominacion")
+    @Column(name = "denominacion")
     private String denom;
 }

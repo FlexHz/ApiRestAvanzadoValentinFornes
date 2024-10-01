@@ -4,11 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.envers.Audited;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Persona")
@@ -22,10 +19,8 @@ public class Persona extends EntidadBase {
 
     @Column
     private String nombre;
-
     @Column
     private String apellido;
-
     @Column
     private int dni;
 
@@ -34,10 +29,10 @@ public class Persona extends EntidadBase {
     private Domicilio domicilio;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable (
+    @JoinTable(
             name = "persona_libro",
             joinColumns = @JoinColumn(name = "persona_id"),
-            inverseJoinColumns = @JoinColumn (name = "libro_id")
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
     )
     private List<Libro> libros = new ArrayList<Libro>();
 

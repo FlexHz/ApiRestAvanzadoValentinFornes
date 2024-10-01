@@ -1,8 +1,9 @@
 package valentinIT.APIREST_ValentinFornes.services;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import valentinIT.APIREST_ValentinFornes.entities.EntidadBase;
-import valentinIT.APIREST_ValentinFornes.entities.Persona;
 import valentinIT.APIREST_ValentinFornes.repositories.RepositorioBase;
 
 import java.io.Serializable;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class BaseServiceImpl<E extends EntidadBase, ID extends Serializable> implements BaseService<E, ID> {
-    protected RepositorioBase <E, ID> repositorioBase;
+    protected RepositorioBase<E, ID> repositorioBase;
 
     public BaseServiceImpl(RepositorioBase<E, ID> repositorioBase) {
         this.repositorioBase = repositorioBase;
@@ -21,6 +22,17 @@ public abstract class BaseServiceImpl<E extends EntidadBase, ID extends Serializ
     public List<E> findAll() throws Exception {
         try {
             List<E> entidades = repositorioBase.findAll();
+            return entidades;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public Page<E> findAll(Pageable pageable) throws Exception{
+        try {
+            Page<E> entidades = repositorioBase.findAll(pageable);
             return entidades;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -54,9 +66,9 @@ public abstract class BaseServiceImpl<E extends EntidadBase, ID extends Serializ
     public E update(ID id, E entity) throws Exception {
         try {
             Optional<E> entityOptional = repositorioBase.findById(id);
-            E entidad = entityOptional.get();
-            entidad = repositorioBase.save(entidad);
-            return entidad;
+            E entityUpdate = entityOptional.get();
+            entityUpdate = repositorioBase.save(entity);
+            return entityUpdate;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
