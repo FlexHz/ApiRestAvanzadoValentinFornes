@@ -35,7 +35,7 @@ public class ApirestValentinFornesApplication {
 
     @Bean
     @Transactional
-    CommandLineRunner init(PersonaRepository personaRepository, AutorRepository autorRepository) {
+    CommandLineRunner init(PersonaRepository personaRepository, AutorRepository autorRepository, LocalidadRepository localidadRepository) {
         return args -> {
             // Creo un objeto persona
             Localidad loc1 = Localidad.builder().
